@@ -19,6 +19,10 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
     - name: build nginx web server 
       run: |
-        docker build ./ -t aimvector/csharp:1.0.0
+        docker build ./nginx_webserver -t $DOCKER_USER/app:v1_$(date +%s)
+        
+    - name: nginx image push to registry
+      run: |
+        docker push $DOCKER_USER/app:v1_$(date +%s)  
 
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      
