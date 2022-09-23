@@ -1,0 +1,32 @@
+name: Newer version updated 
+
+on:
+  # can be used to run workflow manually
+  workflow_dispatch:
+  schedule:
+    # Automatically check on every Sunday
+    - cron:  '0 0 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Access token with `workflow` scope is required
+          token: ${{ secrets.WORKFLOW_SECRET }}
+          
+      - name: neweer release version updated
+      
+        uses: tj-actions/sync-release-version@v13
+          id: sync-release-version
+          with:
+            pattern: 'version='
+            current_version: '1.0.1'  # Omit this to use git tag.
+            new_version: '1.0.2'  # Omit this to use git tag.
+            paths: |
+              README.md
+              test/subdir/README.md
+
+      - run: |
+          echo "Upgraded from ${{ steps.sync-release-version.outputs.old_version }} -> ${{ steps.sync-release-version.outputs.new_version }}"    
