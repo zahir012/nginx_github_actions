@@ -17,12 +17,19 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
-    - name: build nginx web server 
+    - name: build top10 books webserver
       run: |
-        docker build ./nginx_webserver -t $DOCKER_USER/app:v1_$(date +%s)
+        docker build ./top10_books -t $DOCKER_USER/book_app:v1_$(date +%s)
+    - name: build top10 movies webserver
+      run: |
+        docker build ./top10_movies -t $DOCKER_USER/app:v1_$(date +%s)
         
     - name: nginx image push to registry
       run: |
-        docker push $DOCKER_USER/app:v1_$(date +%s)  
+
+        docker push $DOCKER_USER/book_app:v1_$(date +%s) 
+        docker push $DOCKER_USER/movie_app:v1_$(date +%s)
+
+
 
       
