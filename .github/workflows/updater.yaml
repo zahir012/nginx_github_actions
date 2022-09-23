@@ -22,8 +22,8 @@ jobs:
           id: sync-release-version
           with:
             pattern: 'version='
-            current_version: '1.0.1'  # Omit this to use git tag.
-            new_version: '1.0.2'  # Omit this to use git tag.
+            current_version: 'app:v1_$(date +%s)'
+            new_version: 'app:v2_$(date +%s)'
             paths: |
               README.md
               test/subdir/README.md
