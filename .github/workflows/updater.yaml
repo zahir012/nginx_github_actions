@@ -22,8 +22,12 @@ jobs:
           id: sync-release-version
           with:
             pattern: 'version='
-            current_version: 'app:v1_$(date +%s)'
-            new_version: 'app:v2_$(date +%s)'
+            current_version: 'book_app:v1'
+            new_version: 'book_app:v2'
+            current_version: 'song_app:v1'
+            new_version: 'song_app:v2'
+            current_version: 'movie_app:v1'
+            new_version: 'movie_app:v2'
             paths: |
               README.md
               test/subdir/README.md
