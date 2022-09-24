@@ -19,20 +19,21 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD  
     - name: build top10 books webserver
       run: |
-        docker build ./top10_books -t $DOCKER_USER/book_app:v1_$(date +%s)
+        docker build ./top10_books -t $DOCKER_USER/book_app:v1
     - name: build top10 movies webserver
       run: |
-        docker build ./top10_movies -t $DOCKER_USER/app:v1_$(date +%s)
+        docker build ./top10_movies -t $DOCKER_USER/movie_app:v1
         
     - name: build top10 books webserver
       run: |
-        docker build ./top10_books -t $DOCKER_USER/app:v1_$(date +%s)    
+        docker build ./top10_songs -t $DOCKER_USER/song_app:v1 
         
     - name: nginx image push to registry
       run: |
 
-        docker push $DOCKER_USER/book_app:v1_$(date +%s) 
-        docker push $DOCKER_USER/movie_app:v1_$(date +%s)
+        docker push $DOCKER_USER/book_app:v1
+        docker push $DOCKER_USER/movie_app:v1
+        docker push $DOCKER_USER/song_app:v1
 
 
 
