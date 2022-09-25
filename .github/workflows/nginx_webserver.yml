@@ -24,7 +24,7 @@ jobs:
       run: |
         docker build ./top10_movies -t $DOCKER_USER/movie_app:v1
         
-    - name: build top10 books webserver
+    - name: build top10 songs webserver
       run: |
         docker build ./top10_songs -t $DOCKER_USER/song_app:v1 
         
